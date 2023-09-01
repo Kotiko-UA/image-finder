@@ -1,9 +1,16 @@
 import { Component } from 'react';
+import { ModalDiv, Overlay } from './Modal.styled';
 
 class Modal extends Component {
   state = {};
   render() {
-    return <div>Modal</div>;
+    return (
+      <Overlay>
+        <ModalDiv>
+          <img src="" alt="" />
+        </ModalDiv>
+      </Overlay>
+    );
   }
 }
 

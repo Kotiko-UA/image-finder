@@ -8,17 +8,23 @@ import {
 } from './Searchbar.styled';
 
 class Searchbar extends Component {
-  state = {};
+  state = { input: '' };
+  onInput = ({ target }) => {
+    this.setState({ input: target.value });
+  };
   render() {
     return (
       <HeaderWrap>
         <SearchForm>
           <SearchFormButton type="submit">
-            <ButtonLabel>Search</ButtonLabel>
+            <ButtonLabel type="submit">Search</ButtonLabel>
           </SearchFormButton>
 
           <FormInput
+            onChange={this.onInput}
             type="text"
+            name="search"
+            value={this.state.value}
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
