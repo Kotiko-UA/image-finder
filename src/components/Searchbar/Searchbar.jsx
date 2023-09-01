@@ -1,6 +1,6 @@
 import { Component } from 'react';
+import { BsSearch } from 'react-icons/bs';
 import {
-  ButtonLabel,
   FormInput,
   HeaderWrap,
   SearchForm,
@@ -17,7 +17,7 @@ class Searchbar extends Component {
       <HeaderWrap>
         <SearchForm onSubmit={this.props.onSearchSubmit}>
           <SearchFormButton type="submit">
-            <ButtonLabel>S</ButtonLabel>
+            <BsSearch size={36} />
           </SearchFormButton>
 
           <FormInput

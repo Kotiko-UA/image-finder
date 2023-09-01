@@ -6,6 +6,7 @@ import { Loader } from './Loader/Loader';
 import Modal from './Modal/Modal';
 import Searchbar from './Searchbar/Searchbar';
 import { searchImg } from 'api';
+import { toast } from 'react-hot-toast';
 
 export class App extends Component {
   state = {
@@ -16,11 +17,12 @@ export class App extends Component {
     modalUrl: '',
     modalAlt: '',
     loading: false,
-    error: false,
+    maxPages: 0,
   };
   onSearchSubmit = e => {
     e.preventDefault();
     if (e.target.elements.search.value === '') {
+      toast.error('Gotta write something!');
       return;
     }
     this.setState({
@@ -40,18 +42,32 @@ export class App extends Component {
 
         this.setState(prevState => ({
           imageSet: [...prevState.imageSet, ...imgs.hits],
+          maxPages: Math.floor(imgs.totalHits / 12),
         }));
-        window.scrollBy(0, 520);
+        if (prevState.page === this.state.page) {
+          toast.success(`You have ${imgs.totalHits} images`);
+        }
+
+        console.log(imgs);
+        window.scrollBy({
+          top: 520,
+          behavior: 'smooth',
+        });
       } catch (error) {
-        console.log(error);
-        this.setState({ error: true });
+        toast.error('Wow! Something went wrong!');
       } finally {
         this.setState({ loading: false });
       }
     }
   }
   onLoadMore = () => {
-    this.setState(prevState => ({ page: prevState.page + 1 }));
+    this.setState(prevState => {
+      if (prevState.page + 1 === this.state.maxPages) {
+        toast.error('pictures are over');
+        return null;
+      }
+      return { page: prevState.page + 1 };
+    });
   };
 
   omImgClick = e => {
@@ -80,9 +96,10 @@ export class App extends Component {
           />
         )}
         {this.state.loading && <Loader />}
-        {this.state.imageSet.length > 0 && (
-          <Button onLoadMore={this.onLoadMore} />
-        )}
+        {this.state.imageSet.length > 0 &&
+          this.state.page !== this.state.maxPages && (
+            <Button onLoadMore={this.onLoadMore} />
+          )}
         {this.state.modal && (
           <Modal
             onExitModal={this.onExitModal}

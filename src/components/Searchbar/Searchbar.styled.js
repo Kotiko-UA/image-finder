@@ -43,15 +43,6 @@ export const SearchFormButton = styled.button`
     opacity: 1;
   }
 `;
-export const ButtonLabel = styled.span`
-  position: absolute;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  clip-path: inset(50%);
-  border: 0;
-`;
 export const FormInput = styled.input`
   display: inline-block;
   width: 100%;
