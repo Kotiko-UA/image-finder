@@ -3,10 +3,15 @@ import { Image, Li } from './ImageGalleryItem.styled';
 
 class ImageGalleryItem extends Component {
   state = {};
+
   render() {
     return (
-      <Li>
-        <Image />
+      <Li onClick={this.props.omImgClick}>
+        <Image
+          loading="lazy"
+          src={this.props.urlMiniImg}
+          alt={this.props.alt}
+        />
       </Li>
     );
   }

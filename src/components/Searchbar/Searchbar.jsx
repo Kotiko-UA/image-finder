@@ -15,16 +15,16 @@ class Searchbar extends Component {
   render() {
     return (
       <HeaderWrap>
-        <SearchForm>
+        <SearchForm onSubmit={this.props.onSearchSubmit}>
           <SearchFormButton type="submit">
-            <ButtonLabel type="submit">Search</ButtonLabel>
+            <ButtonLabel>S</ButtonLabel>
           </SearchFormButton>
 
           <FormInput
             onChange={this.onInput}
             type="text"
             name="search"
-            value={this.state.value}
+            value={this.state.input}
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"

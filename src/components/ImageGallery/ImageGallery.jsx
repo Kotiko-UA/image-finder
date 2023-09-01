@@ -7,7 +7,16 @@ class ImageGallery extends Component {
   render() {
     return (
       <Ul>
-        <ImageGalleryItem />
+        {this.props.imageSet.map(img => {
+          return (
+            <ImageGalleryItem
+              omImgClick={this.props.omImgClick}
+              key={img.id}
+              urlMiniImg={img.webformatURL}
+              alt={img.tags}
+            />
+          );
+        })}
       </Ul>
     );
   }

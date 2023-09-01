@@ -1,3 +1,5 @@
+import { Div } from './Loader.styled';
+
 export const Loader = () => {
-  return <span></span>;
+  return <Div></Div>;
 };
