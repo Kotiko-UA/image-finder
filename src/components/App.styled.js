@@ -6,3 +6,6 @@ export const Wrapper = styled.div`
   grid-gap: 16px;
   padding-bottom: 24px;
 `;
+export const NoImg = styled.div`
+  background-color: #9baaff;
+`;
