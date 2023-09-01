@@ -61,13 +61,7 @@ export class App extends Component {
     }
   }
   onLoadMore = () => {
-    this.setState(prevState => {
-      if (prevState.page + 1 === this.state.maxPages) {
-        toast.error('pictures are over');
-        return null;
-      }
-      return { page: prevState.page + 1 };
-    });
+    this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
   omImgClick = e => {
