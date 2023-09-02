@@ -20,11 +20,6 @@ export class App extends Component {
     maxPages: 0,
   };
   onSearchSubmit = e => {
-    e.preventDefault();
-    if (e.target.elements.search.value === '') {
-      toast.error('Gotta write something!');
-      return;
-    }
     this.setState({
       searchText: `${Date.now()}/${e.target.elements.search.value.toLowerCase()}`,
       imageSet: [],
@@ -45,7 +40,7 @@ export class App extends Component {
         }
         this.setState(prevState => ({
           imageSet: [...prevState.imageSet, ...imgs.hits],
-          maxPages: Math.floor(imgs.totalHits / 12),
+          maxPages: Math.round(imgs.totalHits / 12),
         }));
 
         if (prevState.page === this.state.page) {
