@@ -4,10 +4,10 @@ import { ModalDiv, Overlay } from './Modal.styled';
 class Modal extends Component {
   state = {};
   componentDidMount() {
-    document.addEventListener('keydown', this.props.onExitModal);
+    window.addEventListener('keydown', this.props.onExitModal);
   }
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.props.onExitModal);
+    window.removeEventListener('keydown', this.props.onExitModal);
   }
 
   render() {
